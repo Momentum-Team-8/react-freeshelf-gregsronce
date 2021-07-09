@@ -86,10 +86,18 @@ export const App = () => {
   ])
   return (
     <main>
-      <h1>Freeshelf Books</h1>
-      {books.map((info, idx) => (
-        <Book title={info.title} author={info.author} shortDescription={info.shortDescription} coverImageUrl={info.coverImageUrl} url={info.url} publisher={info.publisher} publicationDate={info.publicationDate} detailedDescription={info.detailedDescription} key={idx} id={idx} />
-      ))}
+      <section className='hero is-small is-primary'>
+        <div className='hero-body'>
+          <p className='title'>
+            Freeshelf Books
+          </p>
+        </div>
+      </section>
+      <div className='container'>
+        {books.map((info, idx) => (
+          <Book title={info.title} author={info.author} shortDescription={info.shortDescription} coverImageUrl={info.coverImageUrl} url={info.url} publisher={info.publisher} publicationDate={info.publicationDate} detailedDescription={info.detailedDescription} key={idx} id={idx} />
+        ))}
+      </div>
     </main>
   );
 }
@@ -101,16 +109,22 @@ export const Book = (props) => {
     setExpanded(!expanded)
   }
   return (
-    <div>
-      <div>
-        <h2>{title}</h2>
-        <p>{author}</p>
-        <p>{shortDescription}</p>
-        <img className='bookCover' src={coverImageUrl} alt='bookCoverImage' />
+    <div className='card'>
+      <div className='card-image'>
+        <figure className='bookCover'>
+          <img src={coverImageUrl} alt='bookCoverImage' />
+        </figure>
+      </div>
+      <div className='card-content'>
+        <h2 className='title is-4'>{title}</h2>
+        <p className='subtitle is-6'>{author}</p>
+        <p className='subtitle is-6'>{shortDescription}</p>
       </div>
       <footer>
-        <button className='button' onClick={handleExpanded}>{expanded ? 'Less Information' : 'More Information'}
-        </button>
+        <p class='footer-title'> 
+          <button className='card-footer-icon' aria-label='more options' onClick={handleExpanded}>{expanded ? 'Less Information' : 'More Information'}
+          </button>
+        </p>
         {expanded && (
           <>  <p><a href={url}>{url}</a></p>
             <p>{publisher}</p>

@@ -4,7 +4,10 @@ main {
 
 .bookCover {
   width: 150px;
-  margin-right: 0;
-  margin-left: auto;
-  display: block;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  width: fit-content;
 }
