@@ -87,21 +87,38 @@ export const App = () => {
   return (
     <main>
       <h1>Freeshelf Books</h1>
-      {books.map((read, idx) => (
-        <Book title={read.title} author={read.author} shortDescription={read.shortDescription} coverImageUrl={read.coverImageUrl} key={idx} id={idx} />
+      {books.map((info, idx) => (
+        <Book title={info.title} author={info.author} shortDescription={info.shortDescription} coverImageUrl={info.coverImageUrl} url={info.url} publisher={info.publisher} publicationDate={info.publicationDate} detailedDescription={info.detailedDescription} key={idx} id={idx} />
       ))}
     </main>
   );
 }
 
 export const Book = (props) => {
-  const { title, author, shortDescription, coverImageUrl } = props
+  const [expanded, setExpanded] = useState(false)
+  const { title, author, shortDescription, coverImageUrl, url, publisher, publicationDate, detailedDescription } = props
+  const handleExpanded = () => {
+    setExpanded(!expanded)
+  }
   return (
     <div>
-      <h2>{title}</h2>
-      <p>{author}</p>
-      <p>{shortDescription}</p>
-      <img className='bookCover' src={coverImageUrl} alt='bookCoverImage' />
+      <div>
+        <h2>{title}</h2>
+        <p>{author}</p>
+        <p>{shortDescription}</p>
+        <img className='bookCover' src={coverImageUrl} alt='bookCoverImage' />
+      </div>
+      <footer>
+        <button className='button' onClick={handleExpanded}>{expanded ? 'Less Information' : 'More Information'}
+        </button>
+        {expanded && (
+          <>  <p><a href={url}>{url}</a></p>
+            <p>{publisher}</p>
+            <p>{publicationDate}</p>
+            <p>{detailedDescription}</p>
+          </>
+        )}
+      </footer>
     </div>
   )
 }
