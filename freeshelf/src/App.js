@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ScrollIntoView from 'react-scroll-into-view';
 import './App.css';
 
 export const App = () => {
@@ -109,27 +110,27 @@ export const Book = (props) => {
     setExpanded(!expanded)
   }
   return (
-    <div className='card'>
-      <div className='card-image'>
+    <div className='box'>
+      <div className='box-image'>
         <figure className='bookCover'>
           <img src={coverImageUrl} alt='bookCoverImage' />
         </figure>
       </div>
-      <div className='card-content'>
+      <div className='content'>
         <h2 className='title is-4'>{title}</h2>
         <p className='subtitle is-6'>{author}</p>
         <p className='subtitle is-6'>{shortDescription}</p>
       </div>
       <footer>
-        <p class='footer-title'> 
-          <button className='card-footer-icon' aria-label='more options' onClick={handleExpanded}>{expanded ? 'Less Information' : 'More Information'}
-          </button>
+        <p class='footer-title'>
+          <button className='box-footer-icon' onClick={handleExpanded}>{expanded ? 'Less Information' : 'More Information'}</button>
         </p>
         {expanded && (
-          <>  <p><a href={url}>{url}</a></p>
-            <p>{publisher}</p>
-            <p>{publicationDate}</p>
-            <p>{detailedDescription}</p>
+          <>  <p className='subtitle is-6' id='url'><strong>URL:</strong> <a href={url}> {url}</a></p>
+            <p className='subtitle is-6'><strong>Publisher:</strong> {publisher}</p>
+            <p className='subtitle is-6'><strong>Publication Date:</strong> {publicationDate}</p>
+            <p className='subtitle is-6'><strong>Full Description: </strong><br />{detailedDescription}
+            </p>
           </>
         )}
       </footer>
