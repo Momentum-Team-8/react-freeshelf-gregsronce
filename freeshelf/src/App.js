@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import ScrollIntoView from 'react-scroll-into-view';
+import React, { useState} from 'react';
 import './App.css';
 
 export const App = () => {
@@ -102,15 +101,14 @@ export const App = () => {
     </main>
   );
 }
-
 export const Book = (props) => {
   const [expanded, setExpanded] = useState(false)
-  const { title, author, shortDescription, coverImageUrl, url, publisher, publicationDate, detailedDescription } = props
+  const { id, title, author, shortDescription, coverImageUrl, url, publisher, publicationDate, detailedDescription } = props
   const handleExpanded = () => {
     setExpanded(!expanded)
   }
   return (
-    <div className='card'>
+    <div id={id} className='card'>
       <div className='image'>
         <figure className='image'>
           <img src={coverImageUrl} alt='bookCoverImage' />
@@ -120,17 +118,17 @@ export const Book = (props) => {
         <h2 className='title is-4'>{title}</h2>
         <p className='subtitle is-6'>{author}</p>
         <p className='subtitle is-6'>{shortDescription}</p>
-        <footer className='card-footer'>
+        <footer id={id} className='card-footer'>
           <p class='card-header-title'>
             <button className='card-header-icon' aria-label='more options' onClick={handleExpanded}>
               {expanded ? '▼' : '►'}
-              {expanded ? 'Less Information' : 'More Information'}
+              <strong className='expand-title'>{expanded ? 'Less Information' : 'More Information'}</strong>
             </button>
           </p>
           {expanded && (
             <>  <p className='subtitle is-6' id='url'><strong>URL:</strong> <a href={url}> {url}</a></p>
-              <p className='subtitle is-6'><strong>Publisher:</strong> {publisher}</p>
-              <p className='subtitle is-6'><strong>Publication Date:</strong> {publicationDate}</p>
+              <p className='subtitle is-6'>{`Publisher: ${publisher}`}</p>
+              <p className='subtitle is-6'>{`Publication Date: ${publicationDate}`}</p>
               <p className='subtitle is-6'><strong>Full Description: </strong><br />{detailedDescription}
               </p>
             </>
@@ -140,5 +138,6 @@ export const Book = (props) => {
     </div>
   )
 }
+
 
 export default App;

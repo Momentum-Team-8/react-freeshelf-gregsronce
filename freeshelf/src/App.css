@@ -32,6 +32,10 @@ main {
   padding: 0em;
 }
 
+.expand-title {
+  margin-left: 5px;
+}
+
 .card-header-title {
   padding: 0px;
   padding-top: 20px;
