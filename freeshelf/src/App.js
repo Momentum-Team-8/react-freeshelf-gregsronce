@@ -87,7 +87,7 @@ export const App = () => {
   ])
   return (
     <main>
-      <section className='hero is-small is-primary'>
+      <section className='hero is-primary is-small'>
         <div className='hero-body'>
           <p className='title'>
             Freeshelf Books
@@ -110,30 +110,33 @@ export const Book = (props) => {
     setExpanded(!expanded)
   }
   return (
-    <div className='box'>
-      <div className='box-image'>
-        <figure className='bookCover'>
+    <div className='card'>
+      <div className='image'>
+        <figure className='image'>
           <img src={coverImageUrl} alt='bookCoverImage' />
         </figure>
       </div>
-      <div className='content'>
+      <div className='card-content'>
         <h2 className='title is-4'>{title}</h2>
         <p className='subtitle is-6'>{author}</p>
         <p className='subtitle is-6'>{shortDescription}</p>
+        <footer className='card-footer'>
+          <p class='card-header-title'>
+            <button className='card-header-icon' aria-label='more options' onClick={handleExpanded}>
+              {expanded ? '▼' : '►'}
+              {expanded ? 'Less Information' : 'More Information'}
+            </button>
+          </p>
+          {expanded && (
+            <>  <p className='subtitle is-6' id='url'><strong>URL:</strong> <a href={url}> {url}</a></p>
+              <p className='subtitle is-6'><strong>Publisher:</strong> {publisher}</p>
+              <p className='subtitle is-6'><strong>Publication Date:</strong> {publicationDate}</p>
+              <p className='subtitle is-6'><strong>Full Description: </strong><br />{detailedDescription}
+              </p>
+            </>
+          )}
+        </footer>
       </div>
-      <footer>
-        <p class='footer-title'>
-          <button className='box-footer-icon' onClick={handleExpanded}>{expanded ? 'Less Information' : 'More Information'}</button>
-        </p>
-        {expanded && (
-          <>  <p className='subtitle is-6' id='url'><strong>URL:</strong> <a href={url}> {url}</a></p>
-            <p className='subtitle is-6'><strong>Publisher:</strong> {publisher}</p>
-            <p className='subtitle is-6'><strong>Publication Date:</strong> {publicationDate}</p>
-            <p className='subtitle is-6'><strong>Full Description: </strong><br />{detailedDescription}
-            </p>
-          </>
-        )}
-      </footer>
     </div>
   )
 }
