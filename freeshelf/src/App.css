@@ -12,7 +12,7 @@ main {
 }
 
 .image {
-  width: 11em;
+  width: 12em;
 }
 
 .card {
@@ -20,6 +20,7 @@ main {
   margin-top: 20px;
   flex-direction: row-reverse;
   width: fit-content;
+  border: 2px solid orange;
 }
 
 .card-content {

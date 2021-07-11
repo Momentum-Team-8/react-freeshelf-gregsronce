@@ -94,7 +94,7 @@ export const App = () => {
         </div>
       </section>
       <div className='container'>
-        {books.map((info, idx) => (
+        {books.filter(info => info.publisher && info.publicationDate !== null).map((info, idx) => (
           <Book title={info.title} author={info.author} shortDescription={info.shortDescription} coverImageUrl={info.coverImageUrl} url={info.url} publisher={info.publisher} publicationDate={info.publicationDate} detailedDescription={info.detailedDescription} key={idx} id={idx} />
         ))}
       </div>
@@ -127,8 +127,8 @@ export const Book = (props) => {
           </p>
           {expanded && (
             <>  <p className='subtitle is-6' id='url'><strong>URL:</strong> <a href={url}> {url}</a></p>
-              <p className='subtitle is-6'>{`Publisher: ${publisher}`}</p>
-              <p className='subtitle is-6'>{`Publication Date: ${publicationDate}`}</p>
+              <p className='subtitle is-6'><strong>Publisher: </strong>{publisher}</p>
+              <p className='subtitle is-6'><strong>Publication Date:</strong> {publicationDate}</p>
               <p className='subtitle is-6'><strong>Full Description: </strong><br />{detailedDescription}
               </p>
             </>
